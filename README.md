@@ -1106,30 +1106,30 @@ $computer->turnOn(); // Ouch! Beep beep! Loading.. Ready to be used!
 $computer->turnOff(); // Bup bup buzzz! Haah! Zzzzz
 ```
 
-🍃 Flyweight
+🍃 Flyweight (poids plume)
 ---------
 
 Un exemple dans le monde réel
-> Did you ever have fresh tea from some stall? They often make more than one cup that you demanded and save the rest for any other customer so to save the resources e.g. gas etc. Flyweight pattern is all about that i.e. sharing.
+> Avez-vous déjà bu du thé frais dans une échoppe ? Souvent, ils préparent plus d'une tasse que vous avez demandée et gardent le reste pour un autre client afin d'économiser les ressources, par exemple l'essence, etc. C'est ce que propose le modèle Flyweight, c'est-à-dire le partage.
 
 En clair
-> It is used to minimize memory usage or computational expenses by sharing as much as possible with similar objects.
+> Il est utilisé pour minimiser l'utilisation de la mémoire ou les dépenses de calcul en partageant autant que possible avec des objets similaires.
 
 D'après Wikipédia
-> In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
+> En programmation informatique, le poids plume est un modèle de conception de logiciel. Un poids plume est un objet qui minimise l'utilisation de la mémoire en partageant autant de données que possible avec d'autres objets similaires ; c'est un moyen d'utiliser des objets en grand nombre lorsqu'une simple représentation répétée utiliserait une quantité inacceptable de mémoire.
 
 **Exemple de programme**
 
-Translating our tea example from above. First of all we have tea types and tea maker
+Traduction de notre exemple de thé ci-dessus.Tout d'abord, nous avons les types de thé et les fabricants de thé.
 
 ```php
-// Anything that will be cached is flyweight.
-// Types of tea here will be flyweights.
+// Tout ce qui sera mis en cache est un poids plume.
+// Les types de thé ici seront des Flyweight.
 class KarakTea
 {
 }
 
-// Acts as a factory and saves the tea
+// Agit comme une usine et enregistre le thé
 class TeaMaker
 {
     protected $availableTea = [];
@@ -1145,7 +1145,7 @@ class TeaMaker
 }
 ```
 
-Then we have the `TeaShop` which takes orders and serves them
+Ensuite, il y a le `TeaShop` qui prend les commandes et les sert.
 
 ```php
 class TeaShop
@@ -1166,12 +1166,12 @@ class TeaShop
     public function serve()
     {
         foreach ($this->orders as $table => $tea) {
-            echo "Serving tea to table# " . $table;
+            echo "Servir le thé à la table# " . $table;
         }
     }
 }
 ```
-And it can be used as below
+Il peut être utilisé comme suit
 
 ```php
 $teaMaker = new TeaMaker();
@@ -1182,15 +1182,15 @@ $shop->takeOrder('more milk', 2);
 $shop->takeOrder('without sugar', 5);
 
 $shop->serve();
-// Serving tea to table# 1
-// Serving tea to table# 2
-// Serving tea to table# 5
+// Servir le thé à la table# 1
+// Servir le thé à la table# 2
+// Servir le thé à la table# 5
 ```
 
 🎱 Proxy
 -------------------
 Un exemple dans le monde réel
-> Have you ever used an access card to go through a door? There are multiple options to open that door i.e. it can be opened either using access card or by pressing a button that bypasses the security. The door's main functionality is to open but there is a proxy added on top of it to add some functionality. Let me better explain it using the code example below.
+> Avez-vous déjà utilisé une carte d'accès pour franchir une porte ? Il existe plusieurs options pour ouvrir cette porte, c'est-à-dire qu'elle peut être ouverte soit à l'aide d'une carte d'accès, soit en appuyant sur un bouton qui permet de contourner la sécurité. La principale fonction de la porte est de s'ouvrir, mais un proxy a été ajouté pour ajouter des fonctionnalités. Permettez-moi de mieux l'expliquer à l'aide de l'exemple de code ci-dessous.
 
 En clair
 > Using the proxy pattern, a class represents the functionality of another class.
@@ -1287,10 +1287,10 @@ D'après Wikipédia
 -----------------------
 
 Un exemple dans le monde réel
-> For example, you have three payment methods (`A`, `B` and `C`) setup in your account; each having a different amount in it. `A` has 100 USD, `B` has 300 USD and `C` having 1000 USD and the preference for payments is chosen as `A` then `B` then `C`. You try to purchase something that is worth 210 USD. Using Chain of Responsibility, first of all account `A` will be checked if it can make the purchase, if yes purchase will be made and the chain will be broken. If not, request will move forward to account `B` checking for amount if yes chain will be broken otherwise the request will keep forwarding till it finds the suitable handler. Here `A`, `B` and `C` are links of the chain and the whole phenomenon is Chain of Responsibility.
+> Par exemple, vous avez trois méthodes de paiement (`A`, `B` et `C`) dans votre compte, chacune ayant un montant différent. `A` a 100 USD, `B` a 300 USD et `C` a 1000 USD et la préférence pour les paiements est choisie comme `A` puis `B` puis `C`. Vous essayez d'acheter quelque chose qui vaut 210 USD. En utilisant la Chaîne de responsabilité, on vérifie tout d'abord si le compte `A` peut effectuer l'achat, si oui l'achat est effectué et la chaîne est rompue. Si ce n'est pas le cas, la requête sera transmise au compte B, qui vérifiera le montant de l'achat. Si c'est le cas, la chaîne sera rompue, sinon la requête continuera d'être transmise jusqu'à ce qu'elle trouve un gestionnaire approprié. Ici, `A`, `B` et `C` sont les maillons de la chaîne et l'ensemble du phénomène est une Chaîne de responsabilité.
 
 En clair
-> It helps building a chain of objects. Request enters from one end and keeps going from object to object till it finds the suitable handler.
+> Il permet de construire une chaîne d'objets. La demande entre d'un côté et continue d'aller d'un objet à l'autre jusqu'à ce qu'elle trouve le gestionnaire approprié.
 
 D'après Wikipédia
 > In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of a source of command objects and a series of processing objects. Each processing object contains logic that defines the types of command objects that it can handle; the rest are passed to the next processing object in the chain.
@@ -1390,8 +1390,8 @@ $bank->pay(259);
 -------
 
 Un exemple dans le monde réel
-> A generic example would be you ordering a food at restaurant. You (i.e. `Client`) ask the waiter (i.e. `Invoker`) to bring some food (i.e. `Command`) and waiter simply forwards the request to Chef (i.e. `Receiver`) who has the knowledge of what and how to cook.
-> Another example would be you (i.e. `Client`) switching on (i.e. `Command`) the television (i.e. `Receiver`) using a remote control (`Invoker`).
+> Un exemple générique serait que vous commandiez de la nourriture au restaurant. Vous (`Client`) demandez au serveur (`Invoker`) d'apporter de la nourriture (`Command`) et le serveur transmet simplement la demande au Chef (`Receiver`) qui a la connaissance de ce qui doit être cuisiné et comment.
+> Un autre exemple serait vous (`Client`) allumant (`Command`) la télévision (`Receiver`) à l'aide d'une télécommande (`Invoker`).
 
 En clair
 > Allows you to encapsulate actions in objects. The key idea behind this pattern is to provide the means to decouple client from receiver.
@@ -1477,7 +1477,7 @@ class TurnOff implements Command
     }
 }
 ```
-Then we have an `Invoker` with whom the client will interact to process any commands
+Ensuite, nous avons un `Invoker` avec lequel le client va interagir pour traiter les commandes.
 ```php
 // Invoker
 class RemoteControl
@@ -1488,7 +1488,7 @@ class RemoteControl
     }
 }
 ```
-Finally let's see how we can use it in our client
+Enfin, voyons comment nous pouvons l'utiliser dans notre client
 ```php
 $bulb = new Bulb();
 
@@ -1506,10 +1506,10 @@ Command pattern can also be used to implement a transaction based system. Where 
 --------
 
 Un exemple dans le monde réel
-> An old radio set will be a good example of iterator, where user could start at some channel and then use next or previous buttons to go through the respective channels. Or take an example of MP3 player or a TV set where you could press the next and previous buttons to go through the consecutive channels or in other words they all provide an interface to iterate through the respective channels, songs or radio stations.  
+> Un vieux poste de radio est un bon exemple d'itérateur, où l'utilisateur peut commencer par une chaîne et utiliser les boutons "suivant" ou "précédent" pour passer d'une chaîne à l'autre. Ou prenez l'exemple d'un lecteur MP3 ou d'un téléviseur où vous pouvez appuyer sur les boutons "suivant" et "précédent" pour parcourir les chaînes consécutives. En d'autres termes, ils fournissent tous une interface pour parcourir les chaînes, les chansons ou les stations de radio respectives.  
 
 En clair
-> It presents a way to access the elements of an object without exposing the underlying presentation.
+> Il permet d'accéder aux éléments d'un objet sans exposer la présentation sous-jacente.
 
 D'après Wikipédia
 > In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers; in some cases, algorithms are necessarily container-specific and thus cannot be decoupled.
@@ -1612,7 +1612,7 @@ $stationList->removeStation(new RadioStation(89)); // Will remove station 89
 ========
 
 Un exemple dans le monde réel
-> A general example would be when you talk to someone on your mobile phone, there is a network provider sitting between you and them and your conversation goes through it instead of being directly sent. In this case network provider is mediator.
+> Par exemple, lorsque vous parlez à quelqu'un sur votre téléphone portable, un fournisseur de réseau se trouve entre vous et cette personne et votre conversation passe par lui au lieu d'être envoyée directement. Dans ce cas, le fournisseur de réseau est un médiateur.
 
 En clair
 > Mediator pattern adds a third party object (called mediator) to control the interaction between two objects (called colleagues). It helps reduce the coupling between the classes communicating with each other. Because now they don't need to have the knowledge of each other's implementation.
@@ -1772,11 +1772,10 @@ $editor->getContent(); // This is the first sentence. This is second.
 😎 Observer
 --------
 Un exemple dans le monde réel
-> A good example would be the job seekers where they subscribe to some job posting site and they are notified whenever there is a matching job opportunity.   
 > Un bon exemple serait celui des demandeurs d'emploi qui s'inscrivent sur un site d'offres d'emploi et qui sont avertis chaque fois qu'il y a une offre d'emploi correspondante.
 
 En clair
-> Defines a dependency between objects so that whenever an object changes its state, all its dependents are notified.
+> Définit une dépendance entre les objets de sorte que chaque fois qu'un objet change d'état, tous ses dépendants en soient informés.
 
 D'après Wikipédia
 > The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
@@ -1862,17 +1861,17 @@ $jobPostings->addJob(new JobPost('Software Engineer'));
 🏃 Visitor
 -------
 Un exemple dans le monde réel
-> Consider someone visiting Dubai. They just need a way (i.e. visa) to enter Dubai. After arrival, they can come and visit any place in Dubai on their own without having to ask for permission or to do some leg work in order to visit any place here; just let them know of a place and they can visit it. Visitor pattern lets you do just that, it helps you add places to visit so that they can visit as much as they can without having to do any legwork.
+> Prenons l'exemple d'une personne qui se rend à Dubaï. Il lui suffit de disposer d'un moyen (c'est-à-dire d'un visa) pour entrer à Dubaï. Après son arrivée, elle peut venir visiter n'importe quel endroit de Dubaï sans avoir à demander d'autorisation ou à faire des démarches pour visiter un endroit quelconque ; il suffit de lui indiquer un endroit et elle peut le visiter. C'est exactement ce que vous permet de faire le pattern Visitor qui vous aide à ajouter des lieux à visiter pour qu'ils puissent en visiter le plus possible sans avoir à faire de démarches.
 
 En clair
-> Visitor pattern lets you add further operations to objects without having to modify them.
+> Le modèle du visiteur permet d'ajouter des opérations supplémentaires aux objets sans avoir à les modifier.
 
 D'après Wikipédia
 > In object-oriented programming and software engineering, the visitor design pattern is a way of separating an algorithm from an object structure on which it operates. A practical result of this separation is the ability to add new operations to existing object structures without modifying those structures. It is one way to follow the open/closed principle.
 
 **Exemple de programme**
 
-Let's take an example of a zoo simulation where we have several different kinds of animals and we have to make them Sound. Let's translate this using visitor pattern
+Prenons l'exemple d'une simulation de zoo où nous avons plusieurs sortes d'animaux et où nous devons les rendre sains. Traduisons cela en utilisant le modèle de visiteur
 
 ```php
 // Visitee
@@ -1953,17 +1952,17 @@ class Speak implements AnimalOperation
 
 And then it can be used as
 ```php
-$monkey = new Monkey();
-$lion = new Lion();
-$dolphin = new Dolphin();
+$monkey = new Monkey();     // implements Animal
+$lion = new Lion();         // implements Animal
+$dolphin = new Dolphin();   // implements Animal
 
-$speak = new Speak();
+$speak = new Speak();       // implements AnimalOperation
 
 $monkey->accept($speak);    // Ooh oo aa aa!    
 $lion->accept($speak);      // Roaaar!
 $dolphin->accept($speak);   // Tuut tutt tuutt!
 ```
-We could have done this simply by having a inheritance hierarchy for the animals but then we would have to modify the animals whenever we would have to add new actions to animals. But now we will not have to change them. For example, let's say we are asked to add the jump behavior to the animals, we can simply add that by creating a new visitor i.e.
+Nous aurions pu le faire simplement en ayant une hiérarchie d'héritage pour les animaux, mais nous aurions alors dû modifier les animaux chaque fois que nous aurions dû ajouter de nouvelles actions aux animaux. Mais maintenant, nous n'aurons plus à les modifier. Par exemple, si l'on nous demande d'ajouter le comportement de saut aux animaux, nous pouvons simplement le faire en créant un nouveau visiteur
 
 ```php
 class Jump implements AnimalOperation
@@ -2002,18 +2001,17 @@ $dolphin->accept($jump);   // Walked on water a little and disappeared
 --------
 
 Un exemple dans le monde réel
-> Consider the example of sorting, we implemented bubble sort but the data started to grow and bubble sort started getting very slow. In order to tackle this we implemented Quick sort. But now although the quick sort algorithm was doing better for large datasets, it was very slow for smaller datasets. In order to handle this we implemented a strategy where for small datasets, bubble sort will be used and for larger, quick sort.
 > Prenons l'exemple du tri : nous avons mis en œuvre le tri par bulles, mais les données ont commencé à croître et le tri par bulles a commencé à devenir très lent. Pour remédier à ce problème, nous avons mis en œuvre le tri rapide. Mais maintenant, bien que l'algorithme de tri rapide soit plus efficace pour les grands ensembles de données, il est très lent pour les petits ensembles de données. Pour remédier à ce problème, nous avons mis en place une stratégie qui consiste à utiliser le tri par bulles pour les petits ensembles de données et le tri rapide pour les plus grands.
 
 En clair
-> Strategy pattern allows you to switch the algorithm or strategy based upon the situation.
+> Le modèle de stratégie vous permet de changer d'algorithme ou de stratégie en fonction de la situation.
 
 D'après Wikipédia
-> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioural software design pattern that enables an algorithm's behavior to be selected at runtime.
+> En programmation informatique, le pattern Strategy est un modèle de conception de logiciel comportemental qui permet de sélectionner le comportement d'un algorithme au moment de l'exécution.
 
 **Exemple de programme**
 
-Translating our example from above. First of all we have our strategy interface and different strategy implementations
+Tout d'abord, nous avons notre interface SortStrategy et différentes implémentations de Strategy
 
 ```php
 interface SortStrategy
@@ -2025,9 +2023,9 @@ class BubbleSortStrategy implements SortStrategy
 {
     public function sort(array $dataset): array
     {
-        echo "Sorting using bubble sort";
+        echo "tri à l'aide du tri à bulles";
 
-        // Do sorting
+        // Effectuer le tri
         return $dataset;
     }
 }
@@ -2036,15 +2034,15 @@ class QuickSortStrategy implements SortStrategy
 {
     public function sort(array $dataset): array
     {
-        echo "Sorting using quick sort";
+        echo "tri à l'aide d'un tri rapide";
 
-        // Do sorting
+        // Effectuer le tri
         return $dataset;
     }
 }
 ```
 
-And then we have our client that is going to use any strategy
+Et puis nous avons notre client qui va utiliser n'importe quelle stratégie
 ```php
 class Sorter
 {
@@ -2061,24 +2059,24 @@ class Sorter
     }
 }
 ```
-And it can be used as
+Et il peut être utilisé comme
 ```php
 $dataset = [1, 5, 4, 3, 2, 8];
 
 $sorter = new Sorter(new BubbleSortStrategy());
-$sorter->sort($dataset); // Output : Sorting using bubble sort
+$sorter->sort($dataset); // Résultat : tri à l'aide du tri à bulles
 
 $sorter = new Sorter(new QuickSortStrategy());
-$sorter->sort($dataset); // Output : Sorting using quick sort
+$sorter->sort($dataset); // Résultat : tri à l'aide d'un tri rapide
 ```
 
 💢 State
 -----
 Un exemple dans le monde réel
-> Imagine you are using some drawing application, you choose the paint brush to draw. Now the brush changes its behavior based on the selected color i.e. if you have chosen red color it will draw in red, if blue then it will be in blue etc.  
+> Imaginez que vous utilisiez une application de dessin et que vous choisissiez le pinceau pour dessiner. Maintenant, le pinceau change de comportement en fonction de la couleur sélectionnée, c'est-à-dire que si vous avez choisi la couleur rouge, il dessinera en rouge, s'il s'agit du bleu, il sera en bleu, etc.  
 
 En clair
-> It lets you change the behavior of a class when the state changes.
+> Il vous permet de modifier le comportement d'une classe lorsque l'état change.
 
 D'après Wikipédia
 > The state pattern is a behavioral software design pattern that implements a state machine in an object-oriented way. With the state pattern, a state machine is implemented by implementing each individual state as a derived class of the state pattern interface, and implementing state transitions by invoking methods defined by the pattern's superclass.
@@ -2170,23 +2168,23 @@ $editor->type('Fifth line');
 ---------------
 
 Un exemple dans le monde réel
-> Suppose we are getting some house built. The steps for building might look like
-> - Prepare the base of house
-> - Build the walls
-> - Add roof
-> - Add other floors
+> Supposons que nous fassions construire une maison. Les étapes de la construction pourraient être les suivantes
+> - Préparer la base de la maison
+> - Construire les murs
+> - Ajouter le toit
+> - Ajouter les autres étages
 
-> The order of these steps could never be changed i.e. you can't build the roof before building the walls etc but each of the steps could be modified for example walls can be made of wood or polyester or stone.
+> L'ordre de ces étapes ne peut jamais être modifié, c'est-à-dire que l'on ne peut pas construire le toit avant de construire les murs, etc., mais chacune des étapes peut être modifiée, par exemple les murs peuvent être en bois, en polyester ou en pierre.
 
 En clair
-> Template method defines the skeleton of how a certain algorithm could be performed, but defers the implementation of those steps to the children classes.
+> La méthode des modèles définit le squelette de la manière dont un certain algorithme pourrait être exécuté, mais reporte la mise en œuvre de ces étapes sur les classes enfants.
 
 D'après Wikipédia
-> In software engineering, the template method pattern is a behavioral design pattern that defines the program skeleton of an algorithm in an operation, deferring some steps to subclasses. It lets one redefine certain steps of an algorithm without changing the algorithm's structure.
+> En génie logiciel, le modèle de méthode template est un modèle de conception comportementale qui définit le squelette du programme d'un algorithme dans une opération, en reportant certaines étapes à des sous-classes. Il permet de redéfinir certaines étapes d'un algorithme sans en modifier la structure.
 
 **Exemple de programme**
 
-Imagine we have a build tool that helps us test, lint, build, generate build reports (i.e. code coverage reports, linting report etc) and deploy our app on the test server.
+Imaginons que nous ayons un outil de construction qui nous aide à tester, à lister, à construire, à générer des rapports de construction (c'est-à-dire des rapports de couverture de code, des rapports de linting, etc.
 
 First of all we have our base class that specifies the skeleton for the build algorithm
 ```php
