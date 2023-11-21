@@ -20,13 +20,11 @@ Wikipedia les décrit ainsi :
 
 > En informatique, et plus particulièrement en développement logiciel, un patron de conception (plus souvent appelé design pattern) est un arrangement caractéristique de modules, reconnu comme bonne pratique en réponse à un problème de conception d'un logiciel. Il décrit une solution standard, utilisable dans la conception de différents logiciels.
 
-⚠️ Faites Attention
+⚠️ À savoir
 -------------------
-- Les design patterns ne sont pas des solutions miracles à tous vos problèmes.
+- Les design patterns ne sont pas des solutions miracles à tous.
 - N'essayez pas de vous forcer à les utiliser dans un projet. Gardez à l'esprit que les design patterns sont des solutions **à** des problèmes et non pas des solutions pour **trouver** des problèmes.
-- S'ils sont utilisés au bon endroit et de la bonne manière, ils peuvent s'avérer salvateurs ; dans le cas contraire ils risquent d'entraîner une complexification du code inutile et dommageable.
-
-> Notez également que les exemples de code ci-dessous sont en PHP 7. Peut importe le langage que vous utilisez, les concepts sont identiques. De plus la **rédaction pour d'autres langages est en cours**.
+- S'ils sont utilisés au bon endroit et de la bonne manière, ils peuvent s'avérer salvateurs ; dans le cas contraire ils risquent d'entraîner une complexité du code inutile et dommageable.
 
 Types de design patterns
 -----------------------
@@ -267,7 +265,7 @@ class Carpenter implements DoorFittingExpert
 }
 ```
 
-Maintenant, nous avons notre Abrastract Factory qui nous permettrait de créer une famille d'objets liés, c'est-à-dire que le Factory de la porte (`WoodenDoorFactory`) en bois créerait une porte en bois et un spécialiste de porte en bois (un Charpentier) et le Factory de la porte en fer (`IronDoorFactory`) créerait une porte en fer et un spécialiste de porte en fer (un Soudeur).
+Maintenant, nous avons notre Abstract Factory qui nous permettrait de créer une famille d'objets liés, c'est-à-dire que le Factory de la porte (`WoodenDoorFactory`) en bois créerait une porte en bois et un spécialiste de porte en bois (un Charpentier) et le Factory de la porte en fer (`IronDoorFactory`) créerait une porte en fer et un spécialiste de porte en fer (un Soudeur).
 ```php
 interface DoorFactory
 {
@@ -576,14 +574,13 @@ D'après Wikipédia
  * [Composite](#-composite)
  * [Decorator](#-decorator)
  * [Facade](#-facade)
- * [Flyweight](#-flyweight)
+ * [Flyweight](#-flyweight-poids-plume)
  * [Proxy](#-proxy)
 
 🔌 Adapter
 -------
 Un exemple dans le monde réel
 > Imaginons que vous souhaitiez transférer des images d'une carte mémoire à votre ordinateur. Pour les transférer, vous avez besoin d'un adaptateur compatible avec les ports de votre ordinateur de manière à y insérer votre carte mémoire. Dans ce cas, le lecteur de carte est un adaptateur.
-> Un autre exemple est le fameux adaptateur secteur : un câble électrique doté d'une fiche à trois branches ne peut pas entrer dans une prise électrique à deux trous. On a besoin d'un adaptateur qui rend la fiche compatible avec la prise.
 > Un exemple supplémentaire serait celui du traducteur, qui traduit les mots prononcés par une personne dans la langue d'une autre.
 
 En clair
@@ -1120,7 +1117,7 @@ D'après Wikipédia
 
 **Exemple de programme**
 
-Traduction de notre exemple de thé ci-dessus.Tout d'abord, nous avons les types de thé et les fabricants de thé.
+Traduction de notre example de thé ci-dessus. Tout d'abord, nous avons les types de thé et les fabricants de thé.
 
 ```php
 // Tout ce qui sera mis en cache est un poids plume.
@@ -1193,14 +1190,14 @@ Un exemple dans le monde réel
 > Avez-vous déjà utilisé une carte d'accès pour franchir une porte ? Il existe plusieurs options pour ouvrir cette porte, c'est-à-dire qu'elle peut être ouverte soit à l'aide d'une carte d'accès, soit en appuyant sur un bouton qui permet de contourner la sécurité. La principale fonction de la porte est de s'ouvrir, mais un proxy a été ajouté pour ajouter des fonctionnalités. Permettez-moi de mieux l'expliquer à l'aide de l'exemple de code ci-dessous.
 
 En clair
-> Using the proxy pattern, a class represents the functionality of another class.
+> En utilisant le modèle proxy, une classe représente la fonctionnalité d'une autre classe.
 
 D'après Wikipédia
-> A proxy, in its most general form, is a class functioning as an interface to something else. A proxy is a wrapper or agent object that is being called by the client to access the real serving object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can provide additional logic. In the proxy extra functionality can be provided, for example caching when operations on the real object are resource intensive, or checking preconditions before operations on the real object are invoked.
+> Un proxy, dans sa forme la plus générale, est une classe fonctionnant comme une interface avec quelque chose d'autre. Un proxy est une enveloppe ou un objet agent qui est appelé par le client pour accéder à l'objet de service réel dans les coulisses. L'utilisation du proxy peut simplement consister en un transfert vers l'objet réel, ou peut fournir une logique supplémentaire. Dans le proxy, des fonctionnalités supplémentaires peuvent être fournies, par exemple la mise en cache lorsque les opérations sur l'objet réel sont gourmandes en ressources, ou la vérification des conditions préalables avant que les opérations sur l'objet réel ne soient invoquées.
 
 **Exemple de programme**
 
-Taking our security door example from above. Firstly we have the door interface and an implementation of door
+Reprenons l'exemple de la porte de sécurité. Nous disposons tout d'abord de l'interface de la porte et d'une implémentation de la porte
 
 ```php
 interface Door
@@ -1263,7 +1260,7 @@ $door->close(); // Closing lab door
 ```
 Yet another example would be some sort of data-mapper implementation. For example, I recently made an ODM (Object Data Mapper) for MongoDB using this pattern where I wrote a proxy around mongo classes while utilizing the magic method `__call()`. All the method calls were proxied to the original mongo class and result retrieved was returned as it is but in case of `find` or `findOne` data was mapped to the required class objects and the object was returned instead of `Cursor`.
 
-Behavioral Design Patterns
+Comportemental Design Patterns
 ==========================
 
 En clair
@@ -1391,24 +1388,24 @@ $bank->pay(259);
 
 Un exemple dans le monde réel
 > Un exemple générique serait que vous commandiez de la nourriture au restaurant. Vous (`Client`) demandez au serveur (`Invoker`) d'apporter de la nourriture (`Command`) et le serveur transmet simplement la demande au Chef (`Receiver`) qui a la connaissance de ce qui doit être cuisiné et comment.
-> Un autre exemple serait vous (`Client`) allumant (`Command`) la télévision (`Receiver`) à l'aide d'une télécommande (`Invoker`).
+> Un autre exemple serait que vous (`Client`) allumant (`Command`) la télévision (`Receiver`) à l'aide d'une télécommande (`Invoker`).
 
 En clair
-> Allows you to encapsulate actions in objects. The key idea behind this pattern is to provide the means to decouple client from receiver.
+> Permet d'encapsuler des actions dans des objets. L'idée clé de ce modèle est de fournir les moyens de découpler le client du récepteur.
 
 D'après Wikipédia
-> In object-oriented programming, the command pattern is a behavioral design pattern in which an object is used to encapsulate all information needed to perform an action or trigger an event at a later time. This information includes the method name, the object that owns the method and values for the method parameters.
+> Dans la programmation orientée objet, le modèle de commande est un modèle de conception comportementale dans lequel un objet est utilisé pour encapsuler toutes les informations nécessaires à l'exécution d'une action ou au déclenchement d'un événement à un moment ultérieur. Ces informations comprennent le nom de la méthode, l'objet qui possède la méthode et les valeurs des paramètres de la méthode.
 
 **Exemple de programme**
 
-First of all we have the receiver that has the implementation of every action that could be performed
+Tout d'abord, nous avons le récepteur qui contient la mise en œuvre de chaque action susceptible d'être effectuée
 ```php
 // Receiver
-class Bulb
+class Ampoule
 {
     public function turnOn()
     {
-        echo "Bulb has been lit";
+        echo "Ampoule has been lit";
     }
 
     public function turnOff()
@@ -1417,7 +1414,7 @@ class Bulb
     }
 }
 ```
-then we have an interface that each of the commands are going to implement and then we have a set of commands
+puis nous avons une interface que chaque commande va mettre en œuvre et nous avons un ensemble de commandes
 ```php
 interface Command
 {
@@ -1429,21 +1426,21 @@ interface Command
 // Command
 class TurnOn implements Command
 {
-    protected $bulb;
+    protected $ampoule;
 
-    public function __construct(Bulb $bulb)
+    public function __construct(Ampoule $ampoule)
     {
-        $this->bulb = $bulb;
+        $this->ampoule = $ampoule;
     }
 
     public function execute()
     {
-        $this->bulb->turnOn();
+        $this->ampoule->turnOn();
     }
 
     public function undo()
     {
-        $this->bulb->turnOff();
+        $this->ampoule->turnOff();
     }
 
     public function redo()
@@ -1454,21 +1451,21 @@ class TurnOn implements Command
 
 class TurnOff implements Command
 {
-    protected $bulb;
+    protected $ampoule;
 
-    public function __construct(Bulb $bulb)
+    public function __construct(Ampoule $ampoule)
     {
-        $this->bulb = $bulb;
+        $this->ampoule = $ampoule;
     }
 
     public function execute()
     {
-        $this->bulb->turnOff();
+        $this->ampoule->turnOff();
     }
 
     public function undo()
     {
-        $this->bulb->turnOn();
+        $this->ampoule->turnOn();
     }
 
     public function redo()
@@ -1490,17 +1487,17 @@ class RemoteControl
 ```
 Enfin, voyons comment nous pouvons l'utiliser dans notre client
 ```php
-$bulb = new Bulb();
+$ampoule = new Ampoule();
 
-$turnOn = new TurnOn($bulb);
-$turnOff = new TurnOff($bulb);
+$turnOn = new TurnOn($ampoule);
+$turnOff = new TurnOff($ampoule);
 
 $remote = new RemoteControl();
-$remote->submit($turnOn); // Bulb has been lit!
-$remote->submit($turnOff); // Darkness!
+$remote->submit($turnOn); // Ampoule à été allumée !
+$remote->submit($turnOff); // Obscurité !
 ```
 
-Command pattern can also be used to implement a transaction based system. Where you keep maintaining the history of commands as soon as you execute them. If the final command is successfully executed, all good otherwise just iterate through the history and keep executing the `undo` on all the executed commands.
+Le modèle de commande peut également être utilisé pour mettre en œuvre un système basé sur les transactions. Il s'agit de conserver l'historique des commandes dès qu'elles sont exécutées. Si la dernière commande est exécutée avec succès, tout va bien, sinon il suffit de parcourir l'historique et de continuer à exécuter `undo` sur toutes les commandes exécutées.
 
 ➿ Iterator
 --------
@@ -1622,9 +1619,9 @@ D'après Wikipédia
 
 **Exemple de programme**
 
-Here is the simplest example of a chat room (i.e. mediator) with users (i.e. colleagues) sending messages to each other.
+Voici l'exemple le plus simple d'un salon de discussion (c'est-à-dire un médiateur) avec des utilisateurs (c'est-à-dire des collègues) qui s'envoient des messages.
 
-First of all, we have the mediator i.e. the chat room
+Tout d'abord, nous avons le médiateur, c'est-à-dire le salon de discussion (ChatRoomMediator).
 
 ```php
 interface ChatRoomMediator 
@@ -1645,7 +1642,7 @@ class ChatRoom implements ChatRoomMediator
 }
 ```
 
-Then we have our users i.e. colleagues
+Ensuite, nous avons nos utilisateurs, c'est-à-dire nos collègues.
 ```php
 class User {
     protected $name;
@@ -1665,7 +1662,8 @@ class User {
     }
 }
 ```
-And the usage
+
+Et l'usage
 ```php
 $mediator = new ChatRoom();
 
@@ -1683,21 +1681,21 @@ $jane->send('Hey!');
 💾 Memento
 -------
 Un exemple dans le monde réel
-> Take the example of calculator (i.e. originator), where whenever you perform some calculation the last calculation is saved in memory (i.e. memento) so that you can get back to it and maybe get it restored using some action buttons (i.e. caretaker).
+> Prenons l'exemple d'une calculatrice (c'est-à-dire l'initiateur), où chaque fois que vous effectuez un calcul, le dernier calcul est sauvegardé en mémoire (c'est-à-dire le mémento) afin que vous puissiez y revenir et peut-être le restaurer à l'aide de boutons d'action (c'est-à-dire le gardien).
 
 En clair
-> Memento pattern is about capturing and storing the current state of an object in a manner that it can be restored later on in a smooth manner.
+> Le modèle Memento consiste à capturer et à stocker l'état actuel d'un objet de manière à ce qu'il puisse être restauré ultérieurement.
 
 D'après Wikipédia
-> The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
+> Le modèle de mémento est un modèle de conception logicielle qui permet de restaurer un objet à son état antérieur (annulation par retour en arrière).
 
-Usually useful when you need to provide some sort of undo functionality.
+Généralement utile lorsque vous devez fournir une sorte de fonctionnalité d'annulation (undo).
 
 **Exemple de programme**
 
-Lets take an example of text editor which keeps saving the state from time to time and that you can restore if you want.
+Prenons l'exemple d'un éditeur de texte qui enregistre l'état de temps en temps et que vous pouvez restaurer si vous le souhaitez.
 
-First of all we have our memento object that will be able to hold the editor state
+Tout d'abord, nous avons notre objet memento qui sera capable de contenir l'état de l'éditeur
 
 ```php
 class EditorMemento
@@ -1716,7 +1714,7 @@ class EditorMemento
 }
 ```
 
-Then we have our editor i.e. originator that is going to use memento object
+Nous avons ensuite notre éditeur, c'est-à-dire le créateur, qui va utiliser l'objet memento.
 
 ```php
 class Editor
@@ -1782,7 +1780,7 @@ D'après Wikipédia
 
 **Exemple de programme**
 
-Translating our example from above. First of all we have job seekers that need to be notified for a job posting
+Traduisons notre exemple ci-dessus. Tout d'abord, nous avons des demandeurs d'emploi qui doivent être informés d'une offre d'emploi
 ```php
 class JobPost
 {
@@ -1864,7 +1862,7 @@ Un exemple dans le monde réel
 > Prenons l'exemple d'une personne qui se rend à Dubaï. Il lui suffit de disposer d'un moyen (c'est-à-dire d'un visa) pour entrer à Dubaï. Après son arrivée, elle peut venir visiter n'importe quel endroit de Dubaï sans avoir à demander d'autorisation ou à faire des démarches pour visiter un endroit quelconque ; il suffit de lui indiquer un endroit et elle peut le visiter. C'est exactement ce que vous permet de faire le pattern Visitor qui vous aide à ajouter des lieux à visiter pour qu'ils puissent en visiter le plus possible sans avoir à faire de démarches.
 
 En clair
-> Le modèle du visiteur permet d'ajouter des opérations supplémentaires aux objets sans avoir à les modifier.
+> Le modèle du Visitor permet d'ajouter des opérations supplémentaires aux objets sans avoir à les modifier.
 
 D'après Wikipédia
 > In object-oriented programming and software engineering, the visitor design pattern is a way of separating an algorithm from an object structure on which it operates. A practical result of this separation is the ability to add new operations to existing object structures without modifying those structures. It is one way to follow the open/closed principle.
@@ -1931,7 +1929,7 @@ class Dolphin implements Animal
 ```
 Let's implement our visitor
 ```php
-class Speak implements AnimalOperation
+class CryAnimal implements AnimalOperation
 {
     public function visitMonkey(Monkey $monkey)
     {
@@ -1956,7 +1954,7 @@ $monkey = new Monkey();     // implements Animal
 $lion = new Lion();         // implements Animal
 $dolphin = new Dolphin();   // implements Animal
 
-$speak = new Speak();       // implements AnimalOperation
+$speak = new CryAnimal();   // implements AnimalOperation
 
 $monkey->accept($speak);    // Ooh oo aa aa!    
 $lion->accept($speak);      // Roaaar!
@@ -2063,9 +2061,11 @@ Et il peut être utilisé comme
 ```php
 $dataset = [1, 5, 4, 3, 2, 8];
 
+// class BubbleSortStrategy implements SortStrategy
 $sorter = new Sorter(new BubbleSortStrategy());
 $sorter->sort($dataset); // Résultat : tri à l'aide du tri à bulles
 
+// class QuickSortStrategy implements SortStrategy
 $sorter = new Sorter(new QuickSortStrategy());
 $sorter->sort($dataset); // Résultat : tri à l'aide d'un tri rapide
 ```
