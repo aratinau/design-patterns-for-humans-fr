@@ -1258,7 +1258,8 @@ $door->open('invalid'); // Big no! It ain't possible.
 $door->open('$ecr@t'); // Opening lab door
 $door->close(); // Closing lab door
 ```
-Yet another example would be some sort of data-mapper implementation. For example, I recently made an ODM (Object Data Mapper) for MongoDB using this pattern where I wrote a proxy around mongo classes while utilizing the magic method `__call()`. All the method calls were proxied to the original mongo class and result retrieved was returned as it is but in case of `find` or `findOne` data was mapped to the required class objects and the object was returned instead of `Cursor`.
+
+Un autre exemple serait une sorte d'implémentation de mappeur de données. Par exemple, j'ai récemment créé un ODM (Object Data Mapper) pour MongoDB en utilisant ce modèle où j'ai écrit un proxy autour des classes Mongo tout en utilisant la méthode magique `__call()`. Tous les appels de méthode ont été proxysés vers la classe Mongo originale et le résultat récupéré a été retourné tel quel, mais dans le cas de `find` ou `findOne`, les données ont été mappées vers les objets de la classe requise et l'objet a été retourné à la place de `Cursor`.
 
 Comportemental Design Patterns
 ==========================
@@ -2079,14 +2080,14 @@ En clair
 > Il vous permet de modifier le comportement d'une classe lorsque l'état change.
 
 D'après Wikipédia
-> The state pattern is a behavioral software design pattern that implements a state machine in an object-oriented way. With the state pattern, a state machine is implemented by implementing each individual state as a derived class of the state pattern interface, and implementing state transitions by invoking methods defined by the pattern's superclass.
-> The state pattern can be interpreted as a strategy pattern which is able to switch the current strategy through invocations of methods defined in the pattern's interface.
+> Le pattern State est un modèle de conception de logiciel comportemental qui implémente une machine d'état (state machine) d'une manière orientée objet. Avec le pattern State, une machine à états est implémentée en implémentant chaque état individuel comme une classe dérivée de l'interface du pattern State, et en implémentant les transitions d'état en invoquant les méthodes définies par la superclasse du modèle.
+> Le pattern State peut être interprété comme un modèle de stratégie capable de changer la stratégie en cours par l'invocation de méthodes définies dans l'interface du modèle.
 
 **Exemple de programme**
 
-Let's take an example of text editor, it lets you change the state of text that is typed i.e. if you have selected bold, it starts writing in bold, if italic then in italics etc.
+Prenons l'exemple de l'éditeur de texte, il vous permet de modifier l'état du texte qui est tapé, c'est-à-dire que si vous avez sélectionné gras, il commence à écrire en gras, s'il est en italique, il commence à écrire en italique, etc.
 
-First of all we have our state interface and some state implementations
+Tout d'abord, nous avons notre interface WritingState et quelques implémentations d'état
 
 ```php
 interface WritingState
@@ -2110,7 +2111,7 @@ class LowerCase implements WritingState
     }
 }
 
-class Default implements WritingState
+class DefaultWritingState implements WritingState
 {
     public function write(string $words)
     {
@@ -2142,7 +2143,7 @@ class TextEditor
 ```
 And then it can be used as
 ```php
-$editor = new TextEditor(new Default());
+$editor = new TextEditor(new DefaultWritingState());
 
 $editor->type('First line');
 
@@ -2186,7 +2187,7 @@ D'après Wikipédia
 
 Imaginons que nous ayons un outil de construction qui nous aide à tester, à lister, à construire, à générer des rapports de construction (c'est-à-dire des rapports de couverture de code, des rapports de linting, etc.
 
-First of all we have our base class that specifies the skeleton for the build algorithm
+Tout d'abord, nous avons notre classe de base qui spécifie le squelette de l'algorithme de construction
 ```php
 abstract class Builder
 {
@@ -2214,22 +2215,22 @@ class AndroidBuilder extends Builder
 {
     public function test()
     {
-        echo 'Running android tests';
+        echo 'Exécuter les tests android';
     }
 
     public function lint()
     {
-        echo 'Linting the android code';
+        echo 'Linting du code android';
     }
 
     public function assemble()
     {
-        echo 'Assembling the android build';
+        echo 'Assembler le build android';
     }
 
     public function deploy()
     {
-        echo 'Deploying android build to server';
+        echo 'Déploiement d\'une version d\'Android sur le serveur';
     }
 }
 
@@ -2237,7 +2238,7 @@ class IosBuilder extends Builder
 {
     public function test()
     {
-        echo 'Running ios tests';
+        echo 'Exécuter les tests ios';
     }
 
     public function lint()
@@ -2247,12 +2248,12 @@ class IosBuilder extends Builder
 
     public function assemble()
     {
-        echo 'Assembling the ios build';
+        echo 'Assembler la compilation ios';
     }
 
     public function deploy()
     {
-        echo 'Deploying ios build to server';
+        echo 'Déploiement d\'une version d\'ios sur le serveur';
     }
 }
 ```
@@ -2262,32 +2263,21 @@ And then it can be used as
 $androidBuilder = new AndroidBuilder();
 $androidBuilder->build();
 
-// Output:
-// Running android tests
-// Linting the android code
-// Assembling the android build
-// Deploying android build to server
+// Sortie :
+// Exécution des tests android
+// Linting du code android
+// Assemblage du code android
+//'Déploiement d'une version d'Android sur le serveur
 
 $iosBuilder = new IosBuilder();
 $iosBuilder->build();
 
-// Output:
-// Running ios tests
-// Linting the ios code
-// Assembling the ios build
-// Deploying ios build to server
+// Sortie :
+// Exécution des tests ios
+// Linting du code ios
+// Assemblage de la version d'ios
+// Déploiement d'une version d'ios sur le serveur
 ```
-
-## 🚦 Wrap Up Folks
-
-And that about wraps it up. I will continue to improve this, so you might want to watch/star this repository to revisit. Also, I have plans on writing the same about the architectural patterns, stay tuned for it.
-
-## 👬 Contribution
-
-- Report issues
-- Open pull request with improvements
-- Spread the word
-- Reach out to me directly at kamranahmed.se@gmail.com or on twitter [@kamranahmedse](http://twitter.com/kamranahmedse)
 
 ## License
 MIT © [Kamran Ahmed](http://kamranahmed.info)
