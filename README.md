@@ -29,9 +29,9 @@ Wikipedia les décrit ainsi :
 Types de design patterns
 -----------------------
 
-* [Création](#creational-design-patterns)
-* [Structurel](#structural-design-patterns)
-* [Comportemental](#behavioral-design-patterns)
+* [Création](#design-patterns-de-création)
+* [Structurel](#design-patterns-structurels)
+* [Comportemental](#comportemental-design-patterns)
 
 Design patterns de création
 ===========================
